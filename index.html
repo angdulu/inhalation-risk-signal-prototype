@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inhalation Risk Signal Interpreter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Research-grade prototype</p>
+        <h1>Inhalation Risk Signal Interpreter</h1>
+        <p class="subtitle">Summarizes exposure-related inhalation signals from household ingredients.</p>
+      </div>
+      <div class="caution-box">
+        <p class="caution-title">Important</p>
+        <ul>
+          <li>No safety verdicts or predictions.</li>
+          <li>Signals are mechanism-based, not ingredient-list-based.</li>
+          <li>Uncertainty is made explicit when data is limited.</li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="panel">
+      <h2>Enter product details</h2>
+      <form id="irs-form" class="form-grid">
+        <label class="field">
+          <span>Ingredients (comma-separated)</span>
+          <textarea id="ingredients-input" rows="3" placeholder="e.g., Benzalkonium chloride, Limonene, Water"></textarea>
+        </label>
+
+        <label class="field">
+          <span>Product form</span>
+          <select id="product-form">
+            <option value="spray">Spray / aerosol</option>
+            <option value="wipe">Wipe</option>
+            <option value="gel">Gel</option>
+            <option value="other" selected>Other</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Use setting</span>
+          <select id="use-setting">
+            <option value="indoor" selected>Indoor</option>
+            <option value="outdoor">Outdoor</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Frequency</span>
+          <select id="frequency">
+            <option value="daily">Daily / frequent</option>
+            <option value="occasional" selected>Occasional</option>
+          </select>
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" id="ventilated" />
+          <span>Good ventilation claimed</span>
+        </label>
+
+        <div class="actions">
+          <button type="submit" class="primary">Compute inhalation signals</button>
+          <button type="button" id="reset-btn" class="ghost">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" id="results-panel">
+      <div class="signal-header">
+        <div>
+          <p class="eyebrow">Inhalation Risk Signal</p>
+          <h2 id="signal-label">Awaiting input</h2>
+          <p class="signal-subtitle">This is a summary of exposure-related signals, not a safety verdict.</p>
+        </div>
+        <div class="signal-chip" id="signal-chip">--</div>
+      </div>
+
+      <div class="signal-grid">
+        <div class="signal-card">
+          <h3>Key reasons</h3>
+          <ul id="key-reasons" class="list"></ul>
+        </div>
+        <div class="signal-card">
+          <h3>Evidence confidence</h3>
+          <p id="confidence"></p>
+          <p class="muted" id="confidence-notes"></p>
+        </div>
+      </div>
+
+      <div class="signal-card">
+        <h3>Why this matters</h3>
+        <p id="why-matters" class="body"></p>
+      </div>
+
+      <div class="signal-card">
+        <h3>What we know</h3>
+        <ul id="what-we-know" class="list"></ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>What we don’t know</h3>
+        <ul id="what-we-dont-know" class="list"></ul>
+      </div>
+
+      <div class="signal-card">
+        <h3>Applied inhalation patterns</h3>
+        <div id="patterns" class="pattern-grid"></div>
+      </div>
+
+      <div class="signal-card">
+        <h3>Evidence sources</h3>
+        <ul id="sources" class="list sources"></ul>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
